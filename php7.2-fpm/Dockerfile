@@ -38,9 +38,11 @@ RUN if [ ${INSTSLL_PDO_MYSQL} = true ]; then \
 ;fi
 
 # MongoDB
+USER root
 ARG INSTALL_MONGO=false
 RUN if [ ${INSTALL_MONGO} = true ]; then \
-    pecl install mongodb && \
+    pecl uninstall mongodb && \
+    pecl install mongodb-1.5.5 && \
     docker-php-ext-enable mongodb \
 ;fi
 
@@ -58,7 +60,6 @@ RUN if [ ${INSTALL_MYSQLI} = true ]; then \
     docker-php-ext-install mysqli \
 ;fi
 
-USER root
 ARG INSTALL_MYSQL_CLIENT=false
 RUN if [ ${INSTALL_MYSQL_CLIENT} = true ]; then \
       apt-get -y install default-mysql-client \
