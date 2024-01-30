@@ -63,10 +63,11 @@ services:
         restart: always
         working_dir: ${CONTAINER_WWWROOT}
         ports:
-            - 8182:8182
+            - 8182:9000
         volumes: 
             - ./php7.2-fpm/php-fpm.d/www.conf:/usr/local/etc/php-fpm.d/www.conf
-            - ./php7.2-fpm/php-fpm.d/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
             - ./php7.2-fpm/php.ini:/usr/local/etc/php/php.ini
             - ./php7.2-fpm/php-fpm.conf:/usr/local/etc/php-fpm.conf
             - ${WWWROOT}:${CONTAINER_WWWROOT}
+        networks: 
+            - backend

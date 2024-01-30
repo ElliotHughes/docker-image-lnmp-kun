@@ -7,6 +7,7 @@ RUN set -xe; \
     pecl channel-update pecl.php.net && \
     apt-get install -yqq \
     apt-utils \
+    net-tools \
     # 安装zip扩展
     libzip-dev zip unzip && \
     docker-php-ext-configure zip && \
